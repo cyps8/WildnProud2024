@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Level" load_steps=3 format=3 uid="uid://2py5lgak2yme"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_5c0bx"]
+[ext_resource type="Resource" uid="uid://b0jobtcukb13l" path="res://Resources/Carriage/Trans.tres" id="1_wv2nd"]
+
+[resource]
+script = ExtResource("1_5c0bx")
+levelSize = 2000.0
+carriages = Array[Resource("res://Scripts/Carriage.gd")]([ExtResource("1_wv2nd")])
+passangers = Array[Resource("res://Scripts/PassangerData.gd")]([])

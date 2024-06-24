@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="WildnProud2024"
+run/main_scene="res://Nodes/Scenes/root.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://Assets/Art/Other/icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [file_customization]
 

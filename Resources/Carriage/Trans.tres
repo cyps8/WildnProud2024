@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Carriage" load_steps=2 format=3 uid="uid://b0jobtcukb13l"]
+
+[ext_resource type="Script" path="res://Scripts/Carriage.gd" id="1_eeyc1"]
+
+[resource]
+script = ExtResource("1_eeyc1")
+type = 1

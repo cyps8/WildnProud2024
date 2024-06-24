@@ -1,6 +1,56 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmsbogtcshr7m"]
+[gd_scene load_steps=12 format=3 uid="uid://bmsbogtcshr7m"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_4v45b"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="2_dgap2"]
+[ext_resource type="Script" path="res://Scripts/Cam.gd" id="3_g55mx"]
+[ext_resource type="Script" path="res://Scripts/Train.gd" id="3_xhb41"]
+[ext_resource type="PackedScene" uid="uid://dak68p2jo2x0i" path="res://Nodes/carraige.tscn" id="4_fu3ya"]
+[ext_resource type="Resource" uid="uid://b0jobtcukb13l" path="res://Resources/Carriage/Trans.tres" id="5_0rflu"]
+[ext_resource type="Texture2D" uid="uid://dvd8awpc285ne" path="res://Assets/Art/Other/icon.svg" id="5_3kmho"]
+[ext_resource type="Resource" uid="uid://c1sstbw5nj07f" path="res://Resources/Carriage/Gay.tres" id="6_2ec3e"]
+[ext_resource type="Script" path="res://Scripts/Passanger.gd" id="6_qo58y"]
+[ext_resource type="Resource" uid="uid://co23ajpafgokb" path="res://Resources/Passanger/Test.tres" id="9_1a2cf"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vcmgq"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_4v45b")
+
+[node name="Game" type="Node2D" parent="."]
+script = ExtResource("2_dgap2")
+levelSize = 2000.0
+
+[node name="Rails" type="Sprite2D" parent="Game"]
+position = Vector2(1914.4, 515)
+scale = Vector2(7.40859, 0.0910156)
+texture = SubResource("NoiseTexture2D_vcmgq")
+
+[node name="Train" type="Node2D" parent="Game"]
+position = Vector2(375, 311)
+script = ExtResource("3_xhb41")
+carriageScene = ExtResource("4_fu3ya")
+tempLoadCarriages = Array[Resource("res://Scripts/Carriage.gd")]([ExtResource("5_0rflu"), ExtResource("6_2ec3e")])
+
+[node name="Front" type="Sprite2D" parent="Game/Train"]
+scale = Vector2(1.2, 0.6)
+texture = SubResource("NoiseTexture2D_vcmgq")
+
+[node name="Cam" type="Camera2D" parent="Game"]
+position = Vector2(960, 540)
+script = ExtResource("3_g55mx")
+
+[node name="Platform" type="Node2D" parent="Game"]
+
+[node name="Passanger" type="TextureButton" parent="Game/Platform"]
+offset_left = 995.0
+offset_top = 589.0
+offset_right = 1123.0
+offset_bottom = 717.0
+pivot_offset = Vector2(64, 64)
+mouse_filter = 1
+texture_normal = ExtResource("5_3kmho")
+script = ExtResource("6_qo58y")
+data = ExtResource("9_1a2cf")
+
+[connection signal="button_down" from="Game/Platform/Passanger" to="Game/Platform/Passanger" method="Grabbed"]
+[connection signal="button_up" from="Game/Platform/Passanger" to="Game/Platform/Passanger" method="Dropped"]
